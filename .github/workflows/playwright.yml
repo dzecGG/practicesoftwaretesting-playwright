@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 30
+    timeout-minutes: 45
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -22,8 +22,51 @@ jobs:
       ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
       ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
       SUITE: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && 'full' || 'smoke' }}
+      # Test CI's own copy of the app: the public site blocks GitHub's servers
+      TEST_ENV: local
+      SPRINT: sprint5
+      DISABLE_LOGGING: 'true'
     steps:
       - uses: actions/checkout@v4
+
+      # Start the app with Docker, following the app's own CI workflow
+      - name: Check out the app
+        uses: actions/checkout@v4
+        with:
+          repository: testsmith-io/practice-software-testing
+          ref: ae7caecb811dd8952c09d997e69be7cb946ecd44 # the version this suite was written against
+          path: app
+      - name: Start the app
+        working-directory: app
+        run: docker compose -f docker-compose.yml up -d
+      - name: Give the containers time to start
+        run: sleep 30
+      - name: Install the API's packages
+        working-directory: app
+        run: docker compose exec -T -u root laravel-api composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-ffi
+      - name: Wait for the database
+        working-directory: app
+        run: |
+          for i in $(seq 1 30); do
+            if docker compose exec -T mariadb mysqladmin ping -h localhost -u root -proot --silent; then exit 0; fi
+            sleep 2
+          done
+          echo "The database did not start"
+          exit 1
+      - name: Create and fill the database
+        working-directory: app
+        run: docker compose exec -T laravel-api php artisan migrate:refresh --seed
+      - name: Wait for the website
+        working-directory: app
+        run: |
+          for i in $(seq 1 60); do
+            if curl -s -o /dev/null -w "%{http_code}" http://localhost:4200 | grep -q 200; then exit 0; fi
+            sleep 5
+          done
+          echo "The website did not start within 5 minutes"
+          docker compose logs angular-ui
+          exit 1
+
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
