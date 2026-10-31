@@ -196,7 +196,4 @@ The tests use the site's public demo admin account, read from `.env`, and custom
 
 ## About
 
-Built by Raymund Dejasco, a QA engineer with 16+ years in software testing (9+ in NetSuite), as part of learning modern test automation.
-[LinkedIn](https://www.linkedin.com/in/YOUR-PROFILE)
-
 Practice Software Testing is a demo application by [Testsmith](https://github.com/testsmith-io/practice-software-testing). This project is not affiliated with Testsmith.
