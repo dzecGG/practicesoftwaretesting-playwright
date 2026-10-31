@@ -23,25 +23,31 @@ test.describe('Remove favorites', () => {
     const addedToast = page.getByRole('alert').filter({ hasText: 'Product added to your favorites list.' });
     const alreadyToast = page.getByRole('alert').filter({ hasText: 'Product already in your favorites list.' });
     const favoritesPage = new FavoritesPage(page);
+    const pliersCard = favoritesPage.card('Pliers');
 
     // 1. Add Pliers, remove it from /account/favorites, return to the Pliers product page and click 'Add to favourites'.
     const productPage = new ProductPage(page);
     await productPage.goto(pliers!.id);
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     await expect(addedToast).toBeVisible();
 
     await favoritesPage.goto();
-    await expect(favoritesPage.card('Pliers')).toHaveCount(1);
-    await favoritesPage.remove('Pliers');
+    await expect(favoritesPage.title).toHaveText('Favorites');
+    await expect(pliersCard).toHaveCount(1);
+
+    const deleted = await favoritesPage.remove('Pliers');
+    expect(deleted.status()).toBe(204);
+    await expect(pliersCard).toHaveCount(0);
 
     // Full navigation clears the earlier toast.
     await productPage.goto(pliers!.id);
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     await expect(addedToast).toBeVisible();
     await expect(alreadyToast).toHaveCount(0);
 
     // Pliers appears again in /account/favorites.
     await favoritesPage.goto();
-    await expect(favoritesPage.card('Pliers')).toHaveCount(1);
+    await expect(favoritesPage.title).toHaveText('Favorites');
+    await expect(pliersCard).toHaveCount(1);
   });
 });

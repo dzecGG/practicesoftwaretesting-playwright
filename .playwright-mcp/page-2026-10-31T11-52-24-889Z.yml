@@ -1,0 +1,82 @@
+- generic [ref=f7e2]:
+  - generic [ref=f7e3]:
+    - text: View the
+    - link "Documentation" [ref=f7e4] [cursor=pointer]:
+      - /url: https://testsmith-io.github.io/practice-software-testing/#/
+    - text: for this application.
+  - generic [ref=f7e5]:
+    - generic [ref=f7e7]:
+      - generic [ref=f7e8]: Practice Black Box Testing & Bug Hunting
+      - button "Testing Guide" [ref=f7e9] [cursor=pointer]
+      - button "🐛 Bug Hunting" [ref=f7e10] [cursor=pointer]
+    - navigation [ref=f7e11]:
+      - generic [ref=f7e12]:
+        - link "Practice Software Testing - Toolshop" [ref=f7e13] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f7e32]:
+          - menubar "Main menu" [ref=f7e33]:
+            - menuitem [ref=f7e34]:
+              - link "Home" [ref=f7e35] [cursor=pointer]:
+                - /url: /
+            - menuitem [ref=f7e36]:
+              - button "Categories" [ref=f7e37] [cursor=pointer]
+            - menuitem [ref=f7e38]:
+              - link "Contact" [ref=f7e39] [cursor=pointer]:
+                - /url: /contact
+            - menuitem [ref=f7e90]:
+              - button "Jane Doe" [ref=f7e91] [cursor=pointer]
+          - button "Select language" [ref=f7e41] [cursor=pointer]: EN
+  - generic [ref=f7e47]:
+    - heading "Favorites" [level=1] [ref=f7e48]
+    - generic [ref=f7e93]:
+      - img "Combination Pliers" [ref=f7e95]
+      - generic [ref=f7e97]:
+        - heading "Combination Pliers" [level=5] [ref=f7e98]
+        - paragraph [ref=f7e99]: Versatile combination pliers designed for gripping, bending, and cutting wire with ease. Featuring chrome vanadium steel construction with induction-hardened cutting edges, these pliers deliver excellent grip and leverage for a wide range of tasks. T...
+      - button [ref=f7e101] [cursor=pointer]
+    - generic [ref=f7e106]:
+      - img "Slip Joint Pliers" [ref=f7e108]
+      - generic [ref=f7e110]:
+        - heading "Slip Joint Pliers" [level=5] [ref=f7e111]
+        - paragraph [ref=f7e112]: Adjustable slip joint pliers that feature a two-position pivot mechanism for switching between regular and wide jaw openings to accommodate different fastener sizes. The PVC-coated handles offer a comfortable, non-slip grip while the precisely machin...
+      - button [ref=f7e114] [cursor=pointer]
+    - generic [ref=f7e119]:
+      - img "Belt Sander" [ref=f7e121]
+      - generic [ref=f7e123]:
+        - heading "Belt Sander" [level=5] [ref=f7e124]
+        - paragraph [ref=f7e125]: Powerful 800W belt sander engineered for aggressive material removal on large flat surfaces including tabletops, doors, hardwood flooring, and timber decking. The 76x533mm sanding belt travels at an impressive 380 meters per minute, enabling rapid st...
+      - button [ref=f7e127] [cursor=pointer]
+  - contentinfo [ref=f7e51]:
+    - generic [ref=f7e53]:
+      - generic [ref=f7e54]: Learn & Explore
+      - generic [ref=f7e55]:
+        - link "Learn Test Automation Hands-on courses for Playwright, Robot Framework, APIs and more" [ref=f7e57] [cursor=pointer]:
+          - /url: https://onlinecourses.testsmith.io
+          - generic [ref=f7e60]:
+            - generic [ref=f7e61]: Learn Test Automation
+            - text: Hands-on courses for Playwright, Robot Framework, APIs and more
+        - link "API Spector Open-source API testing, mocking and contract testing" [ref=f7e63] [cursor=pointer]:
+          - /url: https://api-spector.dev
+          - generic [ref=f7e66]:
+            - generic [ref=f7e67]: API Spector
+            - text: Open-source API testing, mocking and contract testing
+        - link "GitHub Source code, issues and contributions" [ref=f7e69] [cursor=pointer]:
+          - /url: https://github.com/testsmith-io/practice-software-testing
+          - generic [ref=f7e72]:
+            - generic [ref=f7e73]: GitHub
+            - text: Source code, issues and contributions
+    - generic [ref=f7e74]:
+      - generic [ref=f7e75]:
+        - text: This is a DEMO application, used for software testing training purpose. |
+        - link "Privacy Policy" [ref=f7e76] [cursor=pointer]:
+          - /url: /privacy
+        - text: "| Banner photo by"
+        - link "Barn Images" [ref=f7e77] [cursor=pointer]:
+          - /url: https://unsplash.com/@barnimages
+        - text: "on"
+        - link "Unsplash" [ref=f7e78] [cursor=pointer]:
+          - /url: https://unsplash.com/photos/t5YUoHW6zRo
+        - text: .
+      - generic [ref=f7e79]: v2.5 | Built 2026-10-11 | Angular 20.0.5
+  - button "Open chat" [ref=f7e81] [cursor=pointer]
+  - button "Show live shop activity" [ref=f7e85] [cursor=pointer]

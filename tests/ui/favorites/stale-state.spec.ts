@@ -23,25 +23,31 @@ test.describe('Remove favorites', () => {
     // 1. In tab 1 open the Pliers detail page.
     const productPage = new ProductPage(page);
     await productPage.goto(pliers!.id);
-    await expect(page.getByTestId('add-to-favorites')).toBeVisible();
+    await expect(productPage.addToFavoritesButton).toBeVisible();
 
     // In tab 2 (same session) add Pliers and then remove it from favorites.
     const tab2 = await page.context().newPage();
+    const tab2ProductPage = new ProductPage(tab2);
+    const tab2FavoritesPage = new FavoritesPage(tab2);
     await tab2.goto(`/product/${pliers!.id}`);
     await expect(tab2.getByTestId('nav-menu')).toBeVisible();
 
     const tab2Added = tab2.getByRole('alert').filter({ hasText: 'Product added to your favorites list.' });
-    await tab2.getByTestId('add-to-favorites').click();
+    await tab2ProductPage.addToFavorites();
     await expect(tab2Added).toBeVisible();
 
-    const tab2Favorites = new FavoritesPage(tab2);
-    await tab2Favorites.goto();
-    await expect(tab2Favorites.card('Pliers')).toHaveCount(1);
-    await tab2Favorites.remove('Pliers');
+    await tab2FavoritesPage.goto();
+    await expect(tab2FavoritesPage.title).toHaveText('Favorites');
+    const tab2PliersCard = tab2FavoritesPage.card('Pliers');
+    await expect(tab2PliersCard).toHaveCount(1);
+
+    const deleted = await tab2FavoritesPage.remove('Pliers');
+    expect(deleted.status()).toBe(204);
+    await expect(tab2PliersCard).toHaveCount(0);
 
     // Back in tab 1 (no reload) click 'Add to favourites'.
     await page.bringToFront();
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     const addedToast = page.getByRole('alert').filter({ hasText: 'Product added to your favorites list.' });
     const alreadyToast = page.getByRole('alert').filter({ hasText: 'Product already in your favorites list.' });
     await expect(addedToast).toBeVisible();
@@ -50,6 +56,7 @@ test.describe('Remove favorites', () => {
     // Pliers is in /account/favorites exactly once.
     const favoritesPage = new FavoritesPage(page);
     await favoritesPage.goto();
+    await expect(favoritesPage.title).toHaveText('Favorites');
     await expect(favoritesPage.card('Pliers')).toHaveCount(1);
   });
 });

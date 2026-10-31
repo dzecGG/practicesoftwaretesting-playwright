@@ -30,13 +30,13 @@ test.describe('Add to favorites', () => {
 
     // 1. As a fresh customer, add Pliers, then open Slip Joint Pliers and add it too.
     await productPage.goto(pliers.id);
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     await expect(toast).toHaveText('Product added to your favorites list.');
 
     // A full navigation discards the first toast, so the next assertion can only match the second one.
     await productPage.goto(slipJoint.id);
     await expect(toast).toHaveCount(0);
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     await expect(toast).toHaveText('Product added to your favorites list.');
 
     // 2. Open My account > Favorites.
@@ -45,6 +45,7 @@ test.describe('Add to favorites', () => {
     await expect(page).toHaveURL(/\/account\/favorites$/);
     const favoritesPage = new FavoritesPage(page);
     await expect(favoritesPage.title).toHaveText('Favorites');
+
     await expect(favoritesPage.cards).toHaveCount(2);
     await expect(favoritesPage.card('Pliers')).toHaveCount(1);
     await expect(favoritesPage.card('Slip Joint Pliers')).toHaveCount(1);

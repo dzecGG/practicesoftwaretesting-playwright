@@ -1,0 +1,148 @@
+- generic [ref=f13e2]:
+  - generic [ref=f13e3]:
+    - text: View the
+    - link "Documentation" [ref=f13e4] [cursor=pointer]:
+      - /url: https://testsmith-io.github.io/practice-software-testing/#/
+    - text: for this application.
+  - generic [ref=f13e5]:
+    - generic [ref=f13e7]:
+      - generic [ref=f13e8]: Practice Black Box Testing & Bug Hunting
+      - button "Testing Guide" [ref=f13e9] [cursor=pointer]
+      - button "🐛 Bug Hunting" [ref=f13e10] [cursor=pointer]
+    - navigation [ref=f13e11]:
+      - generic [ref=f13e12]:
+        - link "Practice Software Testing - Toolshop" [ref=f13e13] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f13e32]:
+          - menubar "Main menu" [ref=f13e33]:
+            - menuitem [ref=f13e34]:
+              - link "Home" [ref=f13e35] [cursor=pointer]:
+                - /url: /
+            - menuitem [ref=f13e36]:
+              - button "Categories" [ref=f13e37] [cursor=pointer]
+            - menuitem [ref=f13e38]:
+              - link "Contact" [ref=f13e39] [cursor=pointer]:
+                - /url: /contact
+            - menuitem [ref=f13e90]:
+              - button "Fav Tester" [ref=f13e91] [cursor=pointer]
+          - button "Select language" [ref=f13e41] [cursor=pointer]: EN
+  - generic [ref=f13e46]:
+    - generic [ref=f13e92]:
+      - figure [ref=f13e94]:
+        - img "Slip Joint Pliers" [ref=f13e96]
+        - generic [ref=f13e97]:
+          - text: Photo by
+          - link "Yasin Hasan" [ref=f13e98] [cursor=pointer]:
+            - /url: https://unsplash.com/@yasin
+          - text: "on"
+          - link "Unsplash" [ref=f13e99] [cursor=pointer]:
+            - /url: https://unsplash.com/photos/dwlxTSpfKXg
+          - text: .
+      - generic [ref=f13e100]:
+        - heading "Slip Joint Pliers" [level=1] [ref=f13e101]
+        - paragraph [ref=f13e102]:
+          - generic "category" [ref=f13e103]: Pliers
+          - generic "brand" [ref=f13e104]: MightyCraft Hardware
+        - generic [ref=f13e105]: $9.17
+        - generic "A = most environmentally friendly, E = higher environmental impact" [ref=f13e107]:
+          - text: "CO₂:"
+          - generic [ref=f13e108]: A
+          - generic [ref=f13e109]: B
+          - generic [ref=f13e110]: C
+          - generic [ref=f13e111]: D
+          - generic [ref=f13e112]: E
+        - paragraph [ref=f13e113]: Adjustable slip joint pliers that feature a two-position pivot mechanism for switching between regular and wide jaw openings to accommodate different fastener sizes. The PVC-coated handles offer a comfortable, non-slip grip while the precisely machined jaws securely grasp round, flat, and hexagonal objects without slipping. Constructed from durable drop-forged carbon steel that has been heat-treated to withstand heavy daily use in professional environments. The curved jaw section grips pipes and cylindrical objects, while the flat front surface handles nuts, bolts, and sheet materials. A wire cutter integrated near the pivot handles light cutting tasks without reaching for a separate tool. Perfect for plumbing, automotive, HVAC, and general maintenance work where a single versatile gripping tool saves time.
+        - generic [ref=f13e114]:
+          - button "Decrease quantity" [ref=f13e115] [cursor=pointer]
+          - generic [ref=f13e119]: Quantity
+          - spinbutton "Quantity" [ref=f13e120]: "1"
+          - button "Increase quantity" [ref=f13e121] [cursor=pointer]
+        - generic [ref=f13e125]:
+          - button [ref=f13e126] [cursor=pointer]
+          - button [ref=f13e130] [cursor=pointer]
+          - button [ref=f13e134] [cursor=pointer]
+    - generic [ref=f13e139]:
+      - heading "Specifications" [level=3] [ref=f13e140]
+      - table [ref=f13e141]:
+        - rowgroup [ref=f13e142]:
+          - row [ref=f13e143]:
+            - cell "Handle Material" [ref=f13e144]
+            - cell "PVC" [ref=f13e145]
+          - row [ref=f13e146]:
+            - cell "Length" [ref=f13e147]
+            - cell "200mm" [ref=f13e148]
+          - row [ref=f13e149]:
+            - cell "Material" [ref=f13e150]
+            - cell "Carbon Steel" [ref=f13e151]
+          - row [ref=f13e152]:
+            - cell "Warranty" [ref=f13e153]
+            - cell "1years" [ref=f13e154]
+          - row [ref=f13e155]:
+            - cell "Weight" [ref=f13e156]
+            - cell "300g" [ref=f13e157]
+    - separator [ref=f13e47]
+    - generic [ref=f13e48]:
+      - heading "Related products" [level=2] [ref=f13e49]
+      - generic [ref=f13e159]:
+        - link [ref=f13e160] [cursor=pointer]:
+          - /url: /product/01M690QZ668KDMZ24SM72H09TN
+          - img "Combination Pliers" [ref=f13e162]
+          - generic [ref=f13e163]:
+            - heading "Combination Pliers" [level=5] [ref=f13e164]
+            - link "More information" [ref=f13e165]:
+              - /url: "#"
+        - link [ref=f13e166] [cursor=pointer]:
+          - /url: /product/01M690QZ6DRGNKTS8N3DA790J3
+          - img "Pliers" [ref=f13e168]
+          - generic [ref=f13e169]:
+            - heading "Pliers" [level=5] [ref=f13e170]
+            - link "More information" [ref=f13e171]:
+              - /url: "#"
+        - link [ref=f13e172] [cursor=pointer]:
+          - /url: /product/01M690QZ6G10V8AYW86Z73Y2YW
+          - img "Bolt Cutters" [ref=f13e174]
+          - generic [ref=f13e175]:
+            - heading "Bolt Cutters" [level=5] [ref=f13e176]
+            - link "More information" [ref=f13e177]:
+              - /url: "#"
+        - link [ref=f13e178] [cursor=pointer]:
+          - /url: /product/01M690QZ6JP6Y17EQ0FCA1Z5CC
+          - img "Long Nose Pliers" [ref=f13e180]
+          - generic [ref=f13e181]:
+            - heading "Long Nose Pliers" [level=5] [ref=f13e182]
+            - link "More information" [ref=f13e183]:
+              - /url: "#"
+  - contentinfo [ref=f13e51]:
+    - generic [ref=f13e53]:
+      - generic [ref=f13e54]: Learn & Explore
+      - generic [ref=f13e55]:
+        - link "Learn Test Automation Hands-on courses for Playwright, Robot Framework, APIs and more" [ref=f13e57] [cursor=pointer]:
+          - /url: https://onlinecourses.testsmith.io
+          - generic [ref=f13e60]:
+            - generic [ref=f13e61]: Learn Test Automation
+            - text: Hands-on courses for Playwright, Robot Framework, APIs and more
+        - link "API Spector Open-source API testing, mocking and contract testing" [ref=f13e63] [cursor=pointer]:
+          - /url: https://api-spector.dev
+          - generic [ref=f13e66]:
+            - generic [ref=f13e67]: API Spector
+            - text: Open-source API testing, mocking and contract testing
+        - link "GitHub Source code, issues and contributions" [ref=f13e69] [cursor=pointer]:
+          - /url: https://github.com/testsmith-io/practice-software-testing
+          - generic [ref=f13e72]:
+            - generic [ref=f13e73]: GitHub
+            - text: Source code, issues and contributions
+    - generic [ref=f13e74]:
+      - generic [ref=f13e75]:
+        - text: This is a DEMO application, used for software testing training purpose. |
+        - link "Privacy Policy" [ref=f13e76] [cursor=pointer]:
+          - /url: /privacy
+        - text: "| Banner photo by"
+        - link "Barn Images" [ref=f13e77] [cursor=pointer]:
+          - /url: https://unsplash.com/@barnimages
+        - text: "on"
+        - link "Unsplash" [ref=f13e78] [cursor=pointer]:
+          - /url: https://unsplash.com/photos/t5YUoHW6zRo
+        - text: .
+      - generic [ref=f13e79]: v2.5 | Built 2026-10-11 | Angular 20.0.5
+  - button "Open chat" [ref=f13e81] [cursor=pointer]
+  - button "Show live shop activity" [ref=f13e85] [cursor=pointer]

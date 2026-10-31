@@ -25,7 +25,7 @@ test.describe('Remove favorites', () => {
     // 1. Fresh customer adds only Pliers; open /account/favorites and click delete.
     const productPage = new ProductPage(page);
     await productPage.goto(pliers!.id);
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     await expect(
       page.getByRole('alert').filter({ hasText: 'Product added to your favorites list.' }),
     ).toBeVisible();
@@ -34,15 +34,19 @@ test.describe('Remove favorites', () => {
     await page.getByTestId('nav-my-favorites').click();
     await expect(page).toHaveURL(/\/account\/favorites$/);
     await expect(favoritesPage.title).toHaveText('Favorites');
+
     await expect(favoritesPage.card('Pliers')).toHaveCount(1);
 
     // Observed live: no confirmation dialog and no removal toast, so neither is asserted.
-    await favoritesPage.remove('Pliers');
+    const deleted = await favoritesPage.remove('Pliers');
+    expect(deleted.status()).toBe(204);
+
     await expect(favoritesPage.cards).toHaveCount(0);
     await expect(favoritesPage.emptyMessage).toBeVisible();
 
     // 2. Reload the page.
-    const favoritesResponse = await favoritesPage.reload();
+    const favoritesResponse = await favoritesPage.reloadAndWaitForList();
+    expect(favoritesResponse.ok()).toBe(true);
     expect(await favoritesResponse.json()).toEqual([]);
 
     await expect(favoritesPage.emptyMessage).toBeVisible();

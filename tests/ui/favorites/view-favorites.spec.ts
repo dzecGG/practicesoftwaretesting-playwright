@@ -22,7 +22,7 @@ test.describe('View favorites', () => {
 
     const productPage = new ProductPage(page);
     await productPage.goto(pliers!.id);
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     await expect(page.getByRole('alert').filter({ hasText: 'Product added to your favorites list.' })).toBeVisible();
 
     // 1. After adding Pliers, click the user name in the navbar (nav-menu).
@@ -40,14 +40,13 @@ test.describe('View favorites', () => {
     await expect(page).toHaveTitle(/^Favorites/);
     const favoritesPage = new FavoritesPage(page);
     await expect(favoritesPage.title).toHaveText('Favorites');
-    await expect(page.getByRole('heading', { name: 'Favorites', exact: true })).toBeVisible();
+    await expect(favoritesPage.heading).toBeVisible();
 
-    const card = favoritesPage.card('Pliers');
-    await expect(card).toHaveCount(1);
-    await expect(card.getByRole('img')).toBeVisible();
-    await expect(card.getByRole('heading', { name: 'Pliers', exact: true })).toBeVisible();
-    await expect(card.getByTestId('product-description')).toHaveText(/\.\.\.$/);
-    await expect(card.getByTestId('delete')).toBeVisible();
-    await expect(card.getByTestId('delete')).toHaveText('');
+    await expect(favoritesPage.card('Pliers')).toHaveCount(1);
+    await expect(favoritesPage.cardImage('Pliers')).toBeVisible();
+    await expect(favoritesPage.cardName('Pliers')).toBeVisible();
+    await expect(favoritesPage.cardDescription('Pliers')).toHaveText(/\.\.\.$/);
+    await expect(favoritesPage.deleteButton('Pliers')).toBeVisible();
+    await expect(favoritesPage.deleteButton('Pliers')).toHaveText('');
   });
 });

@@ -1,0 +1,3 @@
+[      69ms] [LOG] Initializing Google Analytics 4: G-0BJFXRKTYC @ https://practicesoftwaretesting.com/chunk-SS5V56Y4.js:0
+[      90ms] [LOG] Google Analytics 4 ready for tracking @ https://practicesoftwaretesting.com/chunk-SS5V56Y4.js:0
+[    3979ms] [WARNING] The resource https://practicesoftwaretesting.com/assets/img/barn-2400x1600.avif was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://practicesoftwaretesting.com/product/01M690QZ6N9HP11WHME9SWSQFT:0

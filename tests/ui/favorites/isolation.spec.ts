@@ -26,7 +26,7 @@ test.describe('View favorites', () => {
 
     const productPage = new ProductPage(page);
     await productPage.goto(pliers!.id);
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     await expect(page.getByRole('alert').filter({ hasText: 'Product added to your favorites list.' })).toBeVisible();
 
     await page.getByTestId('nav-menu').click();
@@ -39,11 +39,13 @@ test.describe('View favorites', () => {
     await expect(page.getByTestId('nav-menu')).toBeVisible();
 
     const favoritesPage = new FavoritesPage(page);
-    const favoritesResponse = await favoritesPage.goto();
+    const favoritesResponse = await favoritesPage.gotoAndWaitForList();
+    expect(favoritesResponse.ok()).toBe(true);
     expect(await favoritesResponse.json()).toEqual([]);
 
+    await expect(favoritesPage.title).toHaveText('Favorites');
     await expect(favoritesPage.emptyMessage).toBeVisible();
     await expect(favoritesPage.cards).toHaveCount(0);
-    await expect(favoritesPage.card('Pliers')).toHaveCount(0);
+    await expect(favoritesPage.productName('Pliers')).toHaveCount(0);
   });
 });

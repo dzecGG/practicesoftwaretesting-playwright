@@ -14,10 +14,12 @@ test.describe('View favorites', () => {
 
     // 1. Register and log in as a new customer; open /account/favorites.
     const favoritesPage = new FavoritesPage(page);
-    const favoritesResponse = await favoritesPage.goto();
+    const favoritesResponse = await favoritesPage.gotoAndWaitForList();
+    expect(favoritesResponse.ok()).toBe(true);
     expect(await favoritesResponse.json()).toEqual([]);
 
     await expect(page).toHaveURL(/\/account\/favorites$/);
+    await expect(favoritesPage.title).toHaveText('Favorites');
     await expect(favoritesPage.emptyMessage).toBeVisible();
     await expect(favoritesPage.cards).toHaveCount(0);
     await expect(favoritesPage.deleteButtons).toHaveCount(0);

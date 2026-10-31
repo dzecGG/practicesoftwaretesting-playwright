@@ -23,7 +23,7 @@ test.describe('Add to favorites', () => {
 
     const productPage = new ProductPage(page);
     await productPage.goto(pliers!.id);
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     await expect(page.getByRole('alert').filter({ hasText: 'Product added to your favorites list.' })).toBeVisible();
 
     await page.getByTestId('nav-menu').click();
@@ -37,10 +37,12 @@ test.describe('Add to favorites', () => {
 
     const favoritesPage = new FavoritesPage(page);
     await favoritesPage.goto();
+    await expect(favoritesPage.title).toHaveText('Favorites');
     await expect(favoritesPage.card('Pliers')).toHaveCount(1);
 
     // 2. Reload the favorites page.
-    await favoritesPage.reload();
+    await page.reload();
+    await expect(favoritesPage.title).toHaveText('Favorites');
     await expect(favoritesPage.card('Pliers')).toHaveCount(1);
   });
 });

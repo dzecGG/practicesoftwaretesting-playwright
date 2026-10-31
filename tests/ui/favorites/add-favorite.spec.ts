@@ -22,16 +22,16 @@ test.describe('Add to favorites', () => {
 
     const productPage = new ProductPage(page);
     await productPage.goto(pliers!.id);
-    await expect(page.getByTestId('add-to-cart')).toBeVisible();
+    await expect(productPage.addToCartButton).toBeVisible();
     await expect(page.getByTestId('add-to-compare')).toBeVisible();
-    await expect(page.getByTestId('add-to-favorites')).toHaveText('Add to favourites');
+    await expect(productPage.addToFavoritesButton).toHaveText('Add to favourites');
 
     // 2. Click 'Add to favourites'
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
 
     await expect(page.getByRole('alert')).toHaveText('Product added to your favorites list.');
     await expect(page).toHaveURL(new RegExp(`/product/${pliers!.id}$`));
-    await expect(page.getByTestId('add-to-favorites')).toHaveText('Add to favourites');
-    await expect(page.getByTestId('add-to-favorites')).toBeEnabled();
+    await expect(productPage.addToFavoritesButton).toHaveText('Add to favourites');
+    await expect(productPage.addToFavoritesButton).toBeEnabled();
   });
 });

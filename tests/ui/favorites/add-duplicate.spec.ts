@@ -23,21 +23,22 @@ test.describe('Add to favorites', () => {
     // 1. As a fresh customer, open Pliers and click 'Add to favourites' twice.
     const productPage = new ProductPage(page);
     await productPage.goto(pliers!.id);
-    const addButton = page.getByTestId('add-to-favorites');
     const addedToast = page.getByRole('alert').filter({ hasText: 'Product added to your favorites list.' });
     const alreadyToast = page.getByRole('alert').filter({ hasText: 'Product already in your favorites list.' });
 
-    await addButton.click();
+    await productPage.addToFavorites();
     await expect(addedToast).toBeVisible();
 
     // Both toasts can be on screen at once, so each is matched by its own text.
-    await addButton.click();
+    await productPage.addToFavorites();
     await expect(alreadyToast).toBeVisible();
-    await expect(addButton).toBeEnabled();
+    await expect(productPage.addToFavoritesButton).toBeEnabled();
 
     // 2. Open /account/favorites.
     const favoritesPage = new FavoritesPage(page);
     await favoritesPage.goto();
+    await expect(favoritesPage.title).toHaveText('Favorites');
+
     await expect(favoritesPage.card('Pliers')).toHaveCount(1);
     await expect(favoritesPage.cards).toHaveCount(1);
   });

@@ -30,13 +30,13 @@ test.describe('Remove favorites', () => {
 
     // 1. Fresh customer adds Pliers and Slip Joint Pliers; open /account/favorites.
     await productPage.goto(pliers.id);
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     await expect(toast).toHaveText('Product added to your favorites list.');
 
     // A full navigation discards the first toast, so the next assertion can only match the second one.
     await productPage.goto(slipJoint.id);
     await expect(toast).toHaveCount(0);
-    await page.getByTestId('add-to-favorites').click();
+    await productPage.addToFavorites();
     await expect(toast).toHaveText('Product added to your favorites list.');
 
     await page.getByTestId('nav-menu').click();
@@ -44,20 +44,29 @@ test.describe('Remove favorites', () => {
     await expect(page).toHaveURL(/\/account\/favorites$/);
     const favoritesPage = new FavoritesPage(page);
     await expect(favoritesPage.title).toHaveText('Favorites');
+
+    const pliersCard = favoritesPage.card('Pliers');
+    const slipJointCard = favoritesPage.card('Slip Joint Pliers');
     await expect(favoritesPage.cards).toHaveCount(2);
-    await expect(favoritesPage.card('Pliers')).toHaveCount(1);
-    await expect(favoritesPage.card('Slip Joint Pliers')).toHaveCount(1);
+    await expect(pliersCard).toHaveCount(1);
+    await expect(slipJointCard).toHaveCount(1);
 
     // 2. Click the delete button on the Pliers card.
     // Observed live: no confirmation dialog and no removal toast, so neither is asserted.
-    await favoritesPage.remove('Pliers');
-    await expect(favoritesPage.card('Slip Joint Pliers')).toHaveCount(1);
+    const deleted = await favoritesPage.remove('Pliers');
+    expect(deleted.status()).toBe(204);
+
+    await expect(pliersCard).toHaveCount(0);
+    await expect(slipJointCard).toHaveCount(1);
     await expect(favoritesPage.cards).toHaveCount(1);
 
     // 3. Reload the page.
-    await favoritesPage.reload();
-    await expect(favoritesPage.card('Slip Joint Pliers')).toHaveCount(1);
-    await expect(favoritesPage.card('Pliers')).toHaveCount(0);
+    const favoritesResponse = await favoritesPage.reloadAndWaitForList();
+    expect(favoritesResponse.ok()).toBe(true);
+
+    await expect(favoritesPage.title).toHaveText('Favorites');
+    await expect(slipJointCard).toHaveCount(1);
+    await expect(pliersCard).toHaveCount(0);
     await expect(favoritesPage.cards).toHaveCount(1);
   });
 });
