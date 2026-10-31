@@ -19,3 +19,15 @@ test.describe('Login page', () => {
     await expect(page).toHaveURL(/\/auth\/login$/);
   });
 });
+
+test.describe('Signed-in pages', () => {
+  test('the saved customer login opens My account', async ({ customerPage }) => {
+    await customerPage.goto('/account');
+    await expect(customerPage.getByTestId('page-title')).toHaveText('My account');
+  });
+
+  test('the saved admin login opens the dashboard', async ({ adminPage }) => {
+    await adminPage.goto('/admin/dashboard');
+    await expect(adminPage.getByTestId('nav-admin-orders')).toBeAttached();
+  });
+});
