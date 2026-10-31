@@ -36,6 +36,11 @@ jobs:
           repository: testsmith-io/practice-software-testing
           ref: ae7caecb811dd8952c09d997e69be7cb946ecd44 # the version this suite was written against
           path: app
+      # The app runs as user 1000, but GitHub's runner owns these files as user 1001.
+      # Let the app write its cache, as the app's own production image does.
+      - name: Let the app write its storage folders
+        working-directory: app
+        run: chmod -R 777 "$SPRINT/API/storage" "$SPRINT/API/bootstrap/cache"
       - name: Start the app
         working-directory: app
         run: docker compose -f docker-compose.yml up -d
