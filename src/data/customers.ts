@@ -8,7 +8,7 @@ export type CustomerData = {
   email: string;
   password: string;
   dob: string;
-  address: { street: string; city: string; state: string; country: string; postal_code: string };
+  address: { street: string; house_number: string; city: string; state: string; country: string; postal_code: string };
 };
 
 export type RegisteredCustomer = CustomerData & { token: string };
@@ -24,6 +24,8 @@ export function buildCustomer(address: Partial<CustomerData['address']> = {}): C
     dob: faker.date.birthdate({ mode: 'age', min: 25, max: 60 }).toISOString().slice(0, 10),
     address: {
       street: faker.location.street(),
+      // Checkout won't continue without a house number
+      house_number: faker.location.buildingNumber(),
       city: faker.location.city(),
       state: faker.location.state(),
       country: 'US',
