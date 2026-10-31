@@ -37,8 +37,6 @@ A Playwright and TypeScript test framework for [Practice Software Testing](https
 | Home page shows no error when products fail to load | [`products.mock.spec.ts`](tests/mocking/products.mock.spec.ts), marked `test.fail()` | An error message | Loading placeholders that never go away |
 | Category filter lists are built wrongly (WCAG 1.3.1, level A) | [`home.a11y.spec.ts`](tests/a11y/home.a11y.spec.ts) | Each `<ul>` contains only `<li>` items | A `<fieldset>` sits directly inside each sub-list's `<ul>` |
 
-<!-- Add one row per defect you confirmed on the bugged site (Milestone 9). Delete this comment when done. -->
-
 Known defects stay visible in every report: each failing check carries a `bug` annotation explaining it.
 
 ## Problems solved along the way
@@ -178,9 +176,6 @@ The favorites tests were built with [Playwright Test Agents](https://playwright.
 2. **Generator:** turned each scenario into a test, one at a time.
 3. **Refactor:** I moved the generated inline locators into a `FavoritesPage` page object, to match the rest of the framework.
 4. **Healer:** fixed failing tests. I reviewed each fix with `git diff` before accepting it.
-
-<!-- Replace this comment with 2-3 things you changed or rejected while reviewing the agents' work,
-     for example the WebKit-only failure in the favorites menu test and how it was fixed. -->
 
 ## Tech stack
 
