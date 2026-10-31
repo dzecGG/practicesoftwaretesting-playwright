@@ -8,7 +8,7 @@ import { ProductPage } from '../../../src/pages/ProductPage';
 import type { Paged, Product } from '../../../src/api/ApiClient';
 
 test.describe('View favorites', () => {
-  test('Favorited product appears under My account > Favorites via menu', async ({ page, api, newCustomer }) => {
+  test('Favorited product appears under My account > Favorites via menu', async ({ page, api, newCustomer, browserName }) => {
     const response = await api.getProducts({ q: 'Pliers' });
     await expect(response).toBeOK();
     const found: Paged<Product> = await response.json();
@@ -43,7 +43,13 @@ test.describe('View favorites', () => {
     await expect(favoritesPage.heading).toBeVisible();
 
     await expect(favoritesPage.card('Pliers')).toHaveCount(1);
-    await expect(favoritesPage.cardImage('Pliers')).toBeVisible();
+    // Playwright's WebKit can't decode the site's AVIF images, so the img has no size and counts as hidden
+    if (browserName === 'webkit') {
+      await expect(favoritesPage.cardImage('Pliers')).toBeAttached();
+      await expect(favoritesPage.cardImage('Pliers')).toHaveAttribute('alt', 'Pliers');
+    } else {
+      await expect(favoritesPage.cardImage('Pliers')).toBeVisible();
+    }
     await expect(favoritesPage.cardName('Pliers')).toBeVisible();
     await expect(favoritesPage.cardDescription('Pliers')).toHaveText(/\.\.\.$/);
     await expect(favoritesPage.deleteButton('Pliers')).toBeVisible();
